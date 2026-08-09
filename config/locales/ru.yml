@@ -5,6 +5,7 @@ ru:
       sign_in: "Войти с помощью GitHub"
       sign_out: "Выйти"
       home_aria_label: "Главная страница"
+      repositories: "Репозитории"
   home:
     index:
       welcome: "Привет от Хекслета!"

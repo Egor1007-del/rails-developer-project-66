@@ -5,6 +5,7 @@ en:
       sign_in: "Sign in with GitHub"
       sign_out: "Sign out"
       home_aria_label: "Home page"
+      repositories: "Repositories"
   home:
     index:
       welcome: "Welcome to Hexlet!"
