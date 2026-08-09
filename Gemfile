@@ -66,6 +66,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "dotenv-rails"
+
+  gem "html2slim", github: "slim-template/html2slim"
 end
 
 group :development do
