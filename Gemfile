@@ -45,6 +45,10 @@ gem "sentry-ruby"
 gem "slim-rails"
 gem "simple_form"
 
+gem "omniauth-github"
+gem "omniauth-rails_csrf_protection"
+gem "octokit"
+
 group :production do
   gem "pg", "~> 1.5"
 end
