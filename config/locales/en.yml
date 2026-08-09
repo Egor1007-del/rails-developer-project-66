@@ -4,3 +4,10 @@ en:
       home: "Home"
       sign_in: "Sign in with GitHub"
       home_aria_label: "Home page"
+  home:
+    index:
+      welcome: "Welcome to Hexlet!"
+      hexlet_description: "Practical programming courses"
+      title: "Repository Quality Analyzer"
+      description: "A project that helps automatically monitor the quality of repositories on GitHub. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user."
+      learn_more: "Learn more"

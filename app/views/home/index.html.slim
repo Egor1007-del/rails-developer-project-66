@@ -1,2 +1,11 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+section.card.shadow-sm.mt-3
+  .card-body.p-4
+    h1.display-4.fw-bold = t(".welcome")
+
+    p.mb-4 = t(".hexlet_description")
+
+    h2.fw-bold = t(".title")
+
+    p.mb-4 = t(".description")
+
+    = link_to t(".learn_more"), "#", class: "btn btn-primary btn-lg fw-bold"
