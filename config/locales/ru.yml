@@ -1,0 +1,6 @@
+ru:
+  layouts:
+    header:
+      home: "Главная"
+      sign_in: "Войти с помощью GitHub"
+      home_aria_label: "Главная страница"

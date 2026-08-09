@@ -13,7 +13,7 @@ module RailsDeveloperProject66
 
     config.autoload_lib(ignore: %w[assets tasks])
     config.i18n.available_locales = %i[en ru]
-    config.i18n.fallbacks = [ :en ]
     config.i18n.default_locale = :ru
+    config.i18n.fallbacks = [ :en ]
   end
 end

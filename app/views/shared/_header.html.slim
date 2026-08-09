@@ -2,9 +2,9 @@ header
   nav.navbar.navbar-expand.bg-white.border-bottom
     .container.py-2
       .d-flex.align-items-center.gap-4
-        = link_to root_path, class: "navbar-brand fs-3 mb-0", aria: { label: "Главная" } do
+        = link_to root_path, class: "navbar-brand fs-3 mb-0", aria: { label: t("layouts.header.home_aria_label") } do
           i.bi.bi-h-square-fill
 
-        = link_to "Главная", root_path, class: "nav-link text-dark"
+        = link_to t("layouts.header.home"), root_path, class: "nav-link text-dark"
 
-      = link_to "Войти с помощью GitHub", "#", class: "nav-link text-dark"
+      = link_to t("layouts.header.sign_in"), "#", class: "nav-link text-dark"
