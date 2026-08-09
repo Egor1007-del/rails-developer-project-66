@@ -42,6 +42,9 @@ gem "image_processing", "~> 1.2"
 gem "sentry-rails"
 gem "sentry-ruby"
 
+gem "slim-rails"
+gem "simple_form"
+
 group :production do
   gem "pg", "~> 1.5"
 end
