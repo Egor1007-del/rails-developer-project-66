@@ -3,6 +3,7 @@ en:
     header:
       home: "Home"
       sign_in: "Sign in with GitHub"
+      sign_out: "Sign out"
       home_aria_label: "Home page"
   home:
     index:
@@ -11,3 +12,10 @@ en:
       title: "Repository Quality Analyzer"
       description: "A project that helps automatically monitor the quality of repositories on GitHub. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user."
       learn_more: "Learn more"
+  auth:
+    callback:
+      success: "You have successfully signed in with GitHub"
+    failure:
+      failure: "Failed to sign in with GitHub"
+    destroy:
+      success: "You have signed out"

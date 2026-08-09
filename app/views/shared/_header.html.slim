@@ -2,9 +2,28 @@ header
   nav.navbar.navbar-expand.bg-white.border-bottom
     .container.py-2
       .d-flex.align-items-center.gap-4
-        = link_to root_path, class: "navbar-brand fs-3 mb-0", aria: { label: t("layouts.header.home_aria_label") } do
+      
+        = link_to root_path,
+            class: "navbar-brand fs-3 mb-0",
+            aria: { label: t("layouts.header.home_aria_label") } do
           i.bi.bi-h-square-fill
 
-        = link_to t("layouts.header.home"), root_path, class: "nav-link text-dark"
+        = link_to t("layouts.header.home"),
+          root_path,
+          class: "nav-link text-dark"
 
-      = link_to t("layouts.header.sign_in"), "#", class: "nav-link text-dark"
+
+      .d-flex.align-items-center.gap-3
+        - if signed_in?
+          span = current_user.nickname
+
+          = button_to t("layouts.header.sign_out"),
+                  logout_path,
+                  method: :delete,
+                  class: "btn btn-outline-secondary btn-sm"
+        - else
+          = button_to t("layouts.header.sign_in"),
+                  "/auth/github",
+                  method: :post,
+                  data: { turbo: false },
+                  class: "btn btn-dark"
