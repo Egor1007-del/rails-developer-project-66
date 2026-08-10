@@ -4,4 +4,9 @@ Rails.application.routes.draw do
   get "/auth/failure", to: "auth#failure"
 
   delete "/logout", to: "auth#logout", as: :logout
+
+
+  if Rails.env.test?
+    post "/test/session", to: "auth#test_session"
+  end
 end
