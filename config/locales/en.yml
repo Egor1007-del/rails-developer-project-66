@@ -20,3 +20,21 @@ en:
       failure: "Failed to sign in with GitHub"
     destroy:
       success: "You have signed out"
+    required: "You need to sign in to continue"
+  repositories:
+    index:
+      title: "Repositories"
+      add: "Add Repository"
+      empty: "No repositories added yet"
+    new:
+      title: "Add Repository"
+      repository: "Repository"
+      submit: "Create Repository"
+    create:
+      success: "Repository has been successfully added"
+      failure: "Failed to add repository"
+    show:
+      name: "Name"
+      language: "Language"
+      clone_url: "HTTPS"
+      ssh_url: "SSH"

@@ -20,3 +20,21 @@ ru:
       failure: "Не удалось выполнить вход через GitHub"
     destroy:
       success: "Вы вышли из системы"
+    required: "Для продолжения необходимо войти"
+  repositories:
+    index:
+      title: "Репозитории"
+      add: "Добавить"
+      empty: "Репозитории ещё не добавлены"
+    new:
+      title: "Добавление репозитория"
+      repository: "Репозиторий"
+      submit: "Создать репозиторий"
+    create:
+      success: "Репозиторий успешно добавлен"
+      failure: "Не удалось добавить репозиторий"
+    show:
+      name: "Название"
+      language: "Язык"
+      clone_url: "HTTPS"
+      ssh_url: "SSH"
