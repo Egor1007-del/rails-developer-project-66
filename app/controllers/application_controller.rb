@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
   def signed_in?
     current_user.present?
   end
+
+  def authenticate_user!
+    return if signed_in?
+
+    redirect_to root_path, alert: t("auth.required")
+  end
 end
