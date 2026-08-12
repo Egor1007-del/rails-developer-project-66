@@ -11,4 +11,8 @@ class GithubClient
   def repositories
     @client.repos
   end
+
+  def repository(github_id)
+    @client.repo(github_id.to_i)
+  end
 end
