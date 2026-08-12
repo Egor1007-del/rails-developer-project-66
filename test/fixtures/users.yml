@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  provider: MyString
-  uid: MyString
+  provider: github
+  uid: 1001
   nickname: MyString
   name: MyString
   email: MyString
   image_url: MyString
-  token: MyString
+  token: token-one
 
 two:
-  provider: MyString
-  uid: MyString
+  provider: github
+  uid: 1002
   nickname: MyString
   name: MyString
   email: MyString
   image_url: MyString
-  token: MyString
+  token: token-two
