@@ -1,0 +1,22 @@
+.container.mt-4
+  .card.shadow-sm
+    .card-body.p-4
+      h1.mb-4 = @repository.full_name
+
+      table.table.mb-0
+        tbody
+          tr
+            th.w-25 = t(".name")
+            td = @repository.name
+
+          tr
+            th = t(".language")
+            td = @repository.language.presence || "—"
+
+          tr
+            th = t(".clone_url")
+            td.text-break = @repository.clone_url
+
+          tr
+            th = t(".ssh_url")
+            td.text-break = @repository.ssh_url

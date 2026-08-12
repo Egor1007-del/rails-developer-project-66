@@ -1,0 +1,16 @@
+.container.mt-4
+  .card.shadow-sm
+    .card-body.p-4
+      h1.mb-4 = t(".title")
+
+      = simple_form_for @repository do |f|
+        = f.input :github_id,
+                  collection: @github_repositories,
+                  label_method: :full_name,
+                  value_method: :id,
+                  include_blank: false,
+                  label: t(".repository")
+
+        = f.button :submit,
+                  t(".submit"),
+                  class: "btn btn-primary"
