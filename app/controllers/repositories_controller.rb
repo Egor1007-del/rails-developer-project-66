@@ -18,12 +18,12 @@ class RepositoriesController < ApplicationController
     @github_repository = github_client.repository(repository_params[:github_id])
 
     @repository = current_user.repositories.build(
-      name: github_repository[:name],
-      github_id: github_repository[:id],
-      full_name: github_repository[:full_name],
-      language: github_repository[:language],
-      clone_url: github_repository[:clone_url],
-      ssh_url: github_repository[:ssh_url]
+      name: @github_repository[:name],
+      github_id: @github_repository[:id],
+      full_name: @github_repository[:full_name],
+      language: @github_repository[:language],
+      clone_url: @github_repository[:clone_url],
+      ssh_url: @github_repository[:ssh_url]
     )
 
     if @repository.save
