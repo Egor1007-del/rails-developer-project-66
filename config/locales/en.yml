@@ -26,6 +26,8 @@ en:
       title: "Repositories"
       add: "Add Repository"
       empty: "No repositories added yet"
+      name: "Name"
+      language: "Language"
     new:
       title: "Add Repository"
       repository: "Repository"
