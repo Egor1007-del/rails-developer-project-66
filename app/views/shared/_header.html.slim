@@ -14,7 +14,7 @@ header
           
         - if signed_in?
           = link_to t("layouts.header.repositories"),
-                  "#",
+                  repositories_path,
                   class: "nav-link text-dark"
 
       .d-flex.align-items-center.gap-3
