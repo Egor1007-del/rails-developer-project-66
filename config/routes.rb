@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "auth#logout", as: :logout
 
+  resources :repositories, only: [ :index, :new, :create, :show ]
 
   if Rails.env.test?
     post "/test/session", to: "auth#test_session"
