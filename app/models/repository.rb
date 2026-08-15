@@ -1,5 +1,9 @@
 class Repository < ApplicationRecord
+  extend Enumerize
+
   belongs_to :user, inverse_of: :repositories
+
+  enumerize :language, in: %i[ruby]
 
   validates :name, presence: true
   validates :github_id, presence: true, uniqueness: { scope: :user_id }

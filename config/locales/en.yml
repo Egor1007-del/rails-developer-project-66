@@ -1,4 +1,11 @@
 en:
+  active_record:
+    errors:
+      models:
+        repository:
+          attributes:
+            language:
+              inclusion: "must be Ruby"
   layouts:
     header:
       home: "Home"

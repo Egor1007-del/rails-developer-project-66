@@ -21,7 +21,7 @@ class RepositoriesController < ApplicationController
       name: @github_repository[:name],
       github_id: @github_repository[:id],
       full_name: @github_repository[:full_name],
-      language: @github_repository[:language],
+      language: @github_repository[:language]&.downcase,
       clone_url: @github_repository[:clone_url],
       ssh_url: @github_repository[:ssh_url]
     )

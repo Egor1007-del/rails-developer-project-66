@@ -1,4 +1,11 @@
 ru:
+  active_record:
+    errors:
+      models:
+        repository:
+          attributes:
+            language:
+              inclusion: "должен быть Ruby"
   layouts:
     header:
       home: "Главная"

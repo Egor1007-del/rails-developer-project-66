@@ -125,6 +125,8 @@ GEM
       railties (>= 6.1)
     drb (2.2.3)
     ed25519 (1.4.0)
+    enumerize (3.0.0)
+      activesupport (>= 3.2)
     erb (6.0.7)
     erubi (1.13.1)
     et-orbi (1.4.1)
@@ -472,6 +474,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  enumerize
   html2slim!
   image_processing (~> 1.2)
   jbuilder
@@ -534,6 +537,7 @@ CHECKSUMS
   dotenv-rails (3.2.0) sha256=657e25554ba622ffc95d8c4f1670286510f47f2edda9f68293c3f661b303beab
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
+  enumerize (3.0.0) sha256=977b90c103bec66f65b4dced14a10ec4d54bb9a8183bc7b40a06d7f8ca7c01a5
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.1) sha256=007e2685b1d873415a7587ef889336c6dcdf8a47fc9c9a63547582b21660a11b
