@@ -3,17 +3,17 @@
 one:
   provider: github
   uid: 1001
-  nickname: MyString
-  name: MyString
-  email: MyString
-  image_url: MyString
+  nickname: user-one
+  name: User One
+  email: user-one@example.com
+  image_url: https://example.com/user-one.png
   token: token-one
 
 two:
   provider: github
   uid: 1002
-  nickname: MyString
-  name: MyString
-  email: MyString
-  image_url: MyString
+  nickname: user-two
+  name: User Two
+  email: user-two@example.com
+  image_url: https://example.com/user-two.png
   token: token-two
