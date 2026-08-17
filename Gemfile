@@ -51,6 +51,9 @@ gem "octokit"
 
 gem "enumerize"
 
+gem "dry-container"
+gem "dry-auto_inject"
+
 group :production do
   gem "pg", "~> 1.5"
 end
@@ -87,4 +90,5 @@ group :test do
   gem "selenium-webdriver"
   gem "minitest-power_assert"
   gem "minitest-mock"
+  gem "webmock"
 end
