@@ -1,44 +1,11 @@
 require "test_helper"
 
 class RepositoriesTest < ActionDispatch::IntegrationTest
-  GithubRepository = Struct.new(
-    :id,
-    :name,
-    :full_name,
-    :language,
-    :clone_url,
-    :ssh_url,
-    keyword_init: true
-  )
-
-  class GithubClientStub
-    def initialize(repository)
-      @repository = repository
-    end
-
-    def repositories
-      [ @repository ]
-    end
-
-    def repository(_github_id)
-      @repository
-    end
-  end
-
   setup do
     @user = users(:one)
     @other_user = users(:two)
 
-    @github_repository = GithubRepository.new(
-      id: 10_001,
-      name: "github-rails-project",
-      full_name: "user-one/github-rails-project",
-      language: "Ruby",
-      clone_url: "https://github.com/user-one/github-rails-project.git",
-      ssh_url: "git@github.com:user-one/github-rails-project.git"
-    )
-
-    @github_client = GithubClientStub.new(@github_repository)
+    @github_repository = GithubClientStub::RUBY_REPOSITORY
   end
 
   test "guest cannot view repository pages" do
@@ -91,9 +58,8 @@ class RepositoriesTest < ActionDispatch::IntegrationTest
   test "new displays github repositories in select" do
     sign_in(@user)
 
-    GithubClient.stub(:new, @github_client) do
-      get new_repository_path
-    end
+
+    get new_repository_path
 
     assert { response.successful? }
 
@@ -113,14 +79,12 @@ class RepositoriesTest < ActionDispatch::IntegrationTest
     sign_in(@user)
 
     assert_difference -> { @user.repositories.count }, 1 do
-      GithubClient.stub(:new, @github_client) do
-        post repositories_path,
-            params: {
-              repository: {
-                github_id: @github_repository.id
-              }
+      post repositories_path,
+          params: {
+            repository: {
+              github_id: @github_repository.id
             }
-      end
+          }
     end
 
     assert { response.redirect? }
@@ -171,27 +135,18 @@ class RepositoriesTest < ActionDispatch::IntegrationTest
   test "user cannot create repository with unsupported language" do
     sign_in(@user)
 
-    github_repository = GithubRepository.new(
-      id: 20_001,
-      name: "javascript-project",
-      full_name: "user-one/javascript-project",
-      language: "JavaScript",
-      clone_url: "https://github.com/user-one/javascript-project.git",
-      ssh_url: "git@github.com:user-one/javascript-project.git"
-    )
-
-    github_client = GithubClientStub.new(github_repository)
+    github_repository = GithubClientStub::JAVASCRIPT_REPOSITORY
 
     repositories_count = @user.repositories.count
 
-    GithubClient.stub(:new, github_client) do
-      post repositories_path,
-          params: {
-            repository: {
-              github_id: github_repository.id
-            }
+
+    post repositories_path,
+        params: {
+          repository: {
+            github_id: github_repository.id
           }
-    end
+        }
+
 
     assert { response.status == 422 }
     assert { @user.repositories.count == repositories_count }
@@ -211,27 +166,20 @@ class RepositoriesTest < ActionDispatch::IntegrationTest
 
     existing_repository = repositories(:one)
 
-    github_repository = GithubRepository.new(
-      id: existing_repository.github_id,
-      name: existing_repository.name,
-      full_name: existing_repository.full_name,
-      language: "Ruby",
-      clone_url: existing_repository.clone_url,
-      ssh_url: existing_repository.ssh_url
-    )
+    github_repository = GithubClientStub::RUBY_REPOSITORY
 
-    github_client = GithubClientStub.new(github_repository)
+    existing_repository.update!(
+      github_id: github_repository.id
+    )
 
     repositories_count = @user.repositories.count
 
-    GithubClient.stub(:new, github_client) do
-      post repositories_path,
-          params: {
-            repository: {
-              github_id: github_repository.id
-            }
+    post repositories_path,
+        params: {
+          repository: {
+            github_id: github_repository.id
           }
-    end
+        }
 
     assert { response.status == 422 }
     assert { @user.repositories.count == repositories_count }
