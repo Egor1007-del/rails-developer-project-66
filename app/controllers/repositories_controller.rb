@@ -15,16 +15,7 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @github_repository = github_client.repository(repository_params[:github_id])
-
-    @repository = current_user.repositories.build(
-      name: @github_repository[:name],
-      github_id: @github_repository[:id],
-      full_name: @github_repository[:full_name],
-      language: @github_repository[:language]&.downcase,
-      clone_url: @github_repository[:clone_url],
-      ssh_url: @github_repository[:ssh_url]
-    )
+    @repository = BuildFromGithub.new.call(user: current_user, github_id: repository_params[:github_id])
 
     if @repository.save
       redirect_to repositories_path, notice: t(".success")
@@ -42,7 +33,7 @@ class RepositoriesController < ApplicationController
   end
 
   def github_client
-    @github_client ||= GithubClient.new(current_user.token)
+    @github_client ||= ApplicationContainer[:github_client].new(current_user.token)
   end
 
   def repository_params
