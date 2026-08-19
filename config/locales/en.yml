@@ -50,5 +50,25 @@ en:
         clone_url: "HTTPS"
         ssh_url: "SSH"
         check: "Check"
+        created_at: "Creation date"
+        updated_at: "Last update"
+
+        checks:
+          id: "ID"
+          status: "Status"
+          commit_id: "Commit ID"
+          passed: "Passed?"
+          created_at: "Created at"
+          empty: "No checks have been run yet"
+      checks:
+        states:
+          created: "Created"
+          checking: "Running"
+          finished: "Finished"
+          failed: "Failed"
+  time:
+    formats:
+      repository: "%B %-d, %Y, %H:%M"
+      check: "%B %-d, %H:%M"
  
  

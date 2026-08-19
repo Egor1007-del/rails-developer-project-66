@@ -50,3 +50,39 @@ ru:
         clone_url: "HTTPS"
         ssh_url: "SSH"
         check: "Проверить"
+        created_at: "Дата создания"
+        updated_at: "Дата обновления"
+
+        checks:
+          id: "ID"
+          status: "Статус"
+          commit_id: "ID коммита"
+          passed: "Проверка пройдена?"
+          created_at: "Дата создания"
+          empty: "Проверки ещё не выполнялись"
+      checks:
+        states:
+          created: "Создана"
+          checking: "Выполняется"
+          finished: "Завершена"
+          failed: "Ошибка"
+  time:
+    formats:
+      repository: "%-d %B %Y, %H:%M"
+      check: "%-d %B, %H:%M"
+  date:
+    month_names:
+      -
+      - января
+      - февраля
+      - марта
+      - апреля
+      - мая
+      - июня
+      - июля
+      - августа
+      - сентября
+      - октября
+      - ноября
+      - декабря
+
