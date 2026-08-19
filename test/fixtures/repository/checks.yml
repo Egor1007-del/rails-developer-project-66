@@ -2,14 +2,14 @@
 
 one:
   repository: one
-  commit_id: MyString
-  aasm_state: MyString
+  commit_id: 3000
+  aasm_state: created
   passed: false
   output: MyText
 
 two:
-  repository: two
+  repository: 3001
   commit_id: MyString
-  aasm_state: MyString
+  aasm_state: checking
   passed: false
   output: MyText

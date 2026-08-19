@@ -54,6 +54,8 @@ gem "enumerize"
 gem "dry-container"
 gem "dry-auto_inject"
 
+gem "aasm"
+
 group :production do
   gem "pg", "~> 1.5"
 end
