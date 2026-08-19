@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   delete "/logout", to: "auth#logout", as: :logout
   scope module: :web do
     root "home#index"
-    resources :repositories, only: [ :index, :show, :new, :create ]
+    resources :repositories, only: [ :index, :show, :new, :create ] do
+      resources :checks, only: [ :show, :create ], module: :repositories
+    end
   end
 
 
