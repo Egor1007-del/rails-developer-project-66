@@ -6,20 +6,6 @@ en:
           attributes:
             language:
               inclusion: "must be Ruby"
-  layouts:
-    header:
-      home: "Home"
-      sign_in: "Sign in with GitHub"
-      sign_out: "Sign out"
-      home_aria_label: "Home page"
-      repositories: "Repositories"
-  home:
-    index:
-      welcome: "Welcome to Hexlet!"
-      hexlet_description: "Practical programming courses"
-      title: "Repository Quality Analyzer"
-      description: "A project that helps automatically monitor the quality of repositories on GitHub. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user."
-      learn_more: "Learn more"
   auth:
     callback:
       success: "You have successfully signed in with GitHub"
@@ -28,22 +14,40 @@ en:
     destroy:
       success: "You have signed out"
     required: "You need to sign in to continue"
-  repositories:
-    index:
-      title: "Repositories"
-      add: "Add Repository"
-      empty: "No repositories added yet"
-      name: "Name"
-      language: "Language"
-    new:
-      title: "Add Repository"
-      repository: "Repository"
-      submit: "Create Repository"
-    create:
-      success: "Repository has been successfully added"
-      failure: "Failed to add repository"
-    show:
-      name: "Name"
-      language: "Language"
-      clone_url: "HTTPS"
-      ssh_url: "SSH"
+  layouts:
+    header:
+      home: "Home"
+      sign_in: "Sign in with GitHub"
+      sign_out: "Sign out"
+      home_aria_label: "Home page"
+      repositories: "Repositories"
+  web:
+    home:
+      index:
+        welcome: "Welcome to Hexlet!"
+        hexlet_description: "Practical programming courses"
+        title: "Repository Quality Analyzer"
+        description: "A project that helps automatically monitor the quality of repositories on GitHub. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user."
+        learn_more: "Learn more"
+        
+    repositories:
+      index:
+        title: "Repositories"
+        add: "Add Repository"
+        empty: "No repositories added yet"
+        name: "Name"
+        language: "Language"
+      new:
+        title: "Add Repository"
+        repository: "Repository"
+        submit: "Create Repository"
+      create:
+        success: "Repository has been successfully added"
+        failure: "Failed to add repository"
+      show:
+        name: "Name"
+        language: "Language"
+        clone_url: "HTTPS"
+        ssh_url: "SSH"
+ 
+ 

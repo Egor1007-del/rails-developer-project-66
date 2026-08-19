@@ -6,20 +6,6 @@ ru:
           attributes:
             language:
               inclusion: "должен быть Ruby"
-  layouts:
-    header:
-      home: "Главная"
-      sign_in: "Войти с помощью GitHub"
-      sign_out: "Выйти"
-      home_aria_label: "Главная страница"
-      repositories: "Репозитории"
-  home:
-    index:
-      welcome: "Привет от Хекслета!"
-      hexlet_description: "Практические курсы по программированию"
-      title: "Анализатор качества репозиториев"
-      description: "Проект, который помогает автоматически следить за качеством репозиториев на GitHub. Он отслеживает изменения и прогоняет их через встроенные анализаторы. Затем формирует отчеты и отправляет их пользователю."
-      learn_more: "Узнать больше"
   auth:
     callback:
       success: "Вы успешно вошли через GitHub"
@@ -28,22 +14,38 @@ ru:
     destroy:
       success: "Вы вышли из системы"
     required: "Для продолжения необходимо войти"
-  repositories:
-    index:
-      title: "Репозитории"
-      add: "Добавить"
-      empty: "Репозитории ещё не добавлены"
-      name: "Название"
-      language: "Язык"
-    new:
-      title: "Добавление репозитория"
-      repository: "Репозиторий"
-      submit: "Создать репозиторий"
-    create:
-      success: "Репозиторий успешно добавлен"
-      failure: "Не удалось добавить репозиторий"
-    show:
-      name: "Название"
-      language: "Язык"
-      clone_url: "HTTPS"
-      ssh_url: "SSH"
+  layouts:
+    header:
+      home: "Главная"
+      sign_in: "Войти с помощью GitHub"
+      sign_out: "Выйти"
+      home_aria_label: "Главная страница"
+      repositories: "Репозитории"
+  web:
+    home:
+      index:
+        welcome: "Привет от Хекслета!"
+        hexlet_description: "Практические курсы по программированию"
+        title: "Анализатор качества репозиториев"
+        description: "Проект, который помогает автоматически следить за качеством репозиториев на GitHub. Он отслеживает изменения и прогоняет их через встроенные анализаторы. Затем формирует отчеты и отправляет их пользователю."
+        learn_more: "Узнать больше"
+  
+    repositories:
+      index:
+        title: "Репозитории"
+        add: "Добавить"
+        empty: "Репозитории ещё не добавлены"
+        name: "Название"
+        language: "Язык"
+      new:
+        title: "Добавление репозитория"
+        repository: "Репозиторий"
+        submit: "Создать репозиторий"
+      create:
+        success: "Репозиторий успешно добавлен"
+        failure: "Не удалось добавить репозиторий"
+      show:
+        name: "Название"
+        language: "Язык"
+        clone_url: "HTTPS"
+        ssh_url: "SSH"
