@@ -13,6 +13,7 @@ module Web
 
     def show
       set_repository
+      @checks = @repository.checks.order(created_at: :desc).limit(10)
     end
 
     def create
