@@ -3,6 +3,8 @@ class Repository < ApplicationRecord
 
   belongs_to :user, inverse_of: :repositories
 
+  has_many :checks, dependent: :destroy, inverse_of: :repository
+
   enumerize :language, in: %i[ruby]
 
   validates :name, presence: true
