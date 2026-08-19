@@ -8,8 +8,8 @@ one:
   output: MyText
 
 two:
-  repository: 3001
-  commit_id: MyString
+  repository: two
+  commit_id: 3001
   aasm_state: checking
   passed: false
   output: MyText
