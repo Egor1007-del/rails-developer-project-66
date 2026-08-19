@@ -66,6 +66,13 @@ ru:
           checking: "Выполняется"
           finished: "Завершена"
           failed: "Ошибка"
+        show:
+          back: "Перейти к репозиторию"
+          title: "Проверка #%{id}"
+          created_at: "Дата создания"
+          status: "Статус"
+          passed: "Проверка пройдена"
+          commit_id: "ID коммита"
   time:
     formats:
       repository: "%-d %B %Y, %H:%M"

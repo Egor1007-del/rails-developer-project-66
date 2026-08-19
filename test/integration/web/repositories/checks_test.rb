@@ -22,6 +22,27 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
     assert { check.created? }
   end
 
+  test "user views repository check" do
+    sign_in(@user)
+
+    check = @repository.checks.create!
+
+    get repository_check_path(@repository, check)
+
+    assert { response.successful? }
+
+    assert_select "h1",
+                  text: I18n.t(
+                    "web.repositories.checks.show.title",
+                    id: check.id
+                  )
+
+    assert_select "a[href='#{repository_path(@repository)}']",
+                  text: I18n.t(
+                    "web.repositories.checks.show.back"
+                  )
+  end
+
   private
 
   def sign_in(user)

@@ -66,6 +66,13 @@ en:
           checking: "Running"
           finished: "Finished"
           failed: "Failed"
+        show:
+          back: "Go to repository"
+          title: "Check #%{id}"
+          created_at: "Created at"
+          status: "Status"
+          passed: "Passed"
+          commit_id: "Commit ID"
   time:
     formats:
       repository: "%B %-d, %Y, %H:%M"
