@@ -49,3 +49,4 @@ ru:
         language: "Язык"
         clone_url: "HTTPS"
         ssh_url: "SSH"
+        check: "Проверить"

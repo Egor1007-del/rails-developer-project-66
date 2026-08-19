@@ -109,7 +109,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
                   text: repository.name
   end
 
-  test "show displays repository full name as heading" do
+  test "show displays repository full name as heading and check button" do
     sign_in(@user)
 
     repository = repositories(:one)
@@ -120,6 +120,11 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
 
     assert_select "h1",
                   text: repository.full_name
+
+    assert_select "form[action='#{repository_checks_path(repository)}']" do
+      assert_select "button",
+                    text: I18n.t("web.repositories.show.check")
+    end
   end
 
   test "user cannot view another users repository" do

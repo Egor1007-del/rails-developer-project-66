@@ -49,5 +49,6 @@ en:
         language: "Language"
         clone_url: "HTTPS"
         ssh_url: "SSH"
+        check: "Check"
  
  
