@@ -14,6 +14,7 @@
             tr
               th = t(".name")
               th = t(".language")
+              th = t(".last_check_status")
 
           tbody
             - @repositories.each do |repository|
@@ -23,5 +24,13 @@
                             repository_path(repository)
 
                 td = repository.language.presence || "—"
+                
+                - latest_check = repository.latest_check
+
+                td
+                  - if latest_check&.passed.nil?
+                    | —
+                  - else
+                    = latest_check.passed
       - else
         p.text-muted.mb-0 = t(".empty")
