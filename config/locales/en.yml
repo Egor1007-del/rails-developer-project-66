@@ -37,6 +37,7 @@ en:
         empty: "No repositories added yet"
         name: "Name"
         language: "Language"
+        last_check_status: "Latest check status"
       new:
         title: "Add Repository"
         repository: "Repository"
