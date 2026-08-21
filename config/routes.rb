@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
 
   if Rails.env.test?
-    post "/test/session", to: "auth#test_session"
+    post "/test/session", to: "web/auth#test_session"
   end
 end
