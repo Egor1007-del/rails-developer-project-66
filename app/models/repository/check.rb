@@ -34,7 +34,7 @@ class Repository::Check < ApplicationRecord
   private
 
   def parsed_output
-    result { } if output.blank?
+    return {} if output.blank?
 
     JSON.parse(output)
   rescue JSON::ParserError
