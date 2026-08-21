@@ -22,11 +22,13 @@ class Repository::Check < ApplicationRecord
   end
 
   def rubocop_files
-    parsed_output.fetch("files", [])
+    parsed_output
+        .fetch("files", [])
+        .select { |file| file.fetch("offenses", []).any? }
   end
 
   def offense_count
-    parsed_output.dig("summary", "offence_count") || 0
+    parsed_output.dig("summary", "offense_count") || 0
   end
 
   private
