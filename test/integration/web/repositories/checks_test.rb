@@ -18,8 +18,10 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
 
     check = @repository.checks.order(:created_at).last
 
-    assert { check.present? }
-    assert { check.created? }
+    assert { check.finished? }
+    assert { check.passed == true }
+    assert { check.commit_id.present? }
+    assert { check.output.present? }
   end
 
   test "user views repository check" do
