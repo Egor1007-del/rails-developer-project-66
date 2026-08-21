@@ -8,16 +8,16 @@ class RepositoryLoader
   class Error < StandardError; end
 
   def call(repository)
-    repository_path = Dir.mktmdir("repository-check-")
+    repository_path = Dir.mktmpdir("repository-check-")
 
-    clone(repository.url, repository_path)
+    clone(repository.clone_url, repository_path)
 
     {
       path: repository_path,
       commit_id: commit_id(repository_path)
     }
   rescue
-    FileUtil.rm_rf(repository_path) if repository_path
+    FileUtils.rm_rf(repository_path) if repository_path
     raise
   end
 

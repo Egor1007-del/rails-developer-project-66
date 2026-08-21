@@ -17,7 +17,7 @@ class RubocopLinter
       repository_path
     )
 
-    raise Error, stderr unless status.exitstatus > 1
+    raise Error, stderr if status.exitstatus > 1
 
     {
       passed: status.success?,
