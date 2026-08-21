@@ -7,6 +7,9 @@ class RubocopLinter
 
   def call(repository_path:)
     stdout, stderr, status = Open3.capture3(
+      {
+        "BUNDLE_GEMFILE" => Rails.root.join("Gemfile").to_s
+      },
       "bundle",
       "exec",
       "rubocop",
@@ -14,7 +17,8 @@ class RubocopLinter
       Rails.root.join(".rubocop.yml").to_s,
       "--format",
       "json",
-      repository_path
+      ".",
+      chdir: repository_path
     )
 
     raise Error, stderr if status.exitstatus > 1
