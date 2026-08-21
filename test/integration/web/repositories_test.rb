@@ -199,6 +199,39 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
                   value: I18n.t("web.repositories.new.submit")
   end
 
+  test "index displays latest repository check result" do
+    sign_in(@user)
+
+    repository = repositories(:one)
+    repository.checks.delete_all
+
+    repository.checks.create!(
+      aasm_state: "finished",
+      passed: false,
+      commit_id: "old123",
+      output: "{}"
+    )
+
+    repository.checks.create!(
+      aasm_state: "finished",
+      passed: true,
+      commit_id: "new456",
+      output: "{}"
+    )
+
+    get repositories_path
+
+    assert { response.successful? }
+
+    assert_select "th",
+                  text: I18n.t(
+                    "web.repositories.index.last_check_status"
+                  )
+
+    assert_select "td", text: "true", count: 1
+    assert_select "td", text: "false", count: 0
+  end
+
   private
 
   def sign_in(user)
