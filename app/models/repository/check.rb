@@ -25,7 +25,7 @@ class Repository::Check < ApplicationRecord
     parsed_output.fetch("files", [])
   end
 
-  def offence_count
+  def offense_count
     parsed_output.dig("summary", "offence_count") || 0
   end
 
@@ -34,7 +34,7 @@ class Repository::Check < ApplicationRecord
   def parsed_output
     result { } if output.blank?
 
-    Json.parse(output)
+    JSON.parse(output)
   rescue JSON::ParserError
     {}
   end
