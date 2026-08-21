@@ -10,7 +10,9 @@ module Web
       end
 
       def create
-        @repository.checks.create!
+        check = @repository.checks.create!
+
+        RepositoryChecker.new.call(check)
 
         redirect_to repository_path(@repository)
       end
