@@ -20,4 +20,22 @@ class Repository::Check < ApplicationRecord
       transitions from: %i[created checking], to: :failed
     end
   end
+
+  def rubocop_files
+    parsed_output.fetch("files", [])
+  end
+
+  def offence_count
+    parsed_output.dig("summary", "offence_count") || 0
+  end
+
+  private
+
+  def parsed_output
+    result { } if output.blank?
+
+    Json.parse(output)
+  rescue JSON::ParserError
+    {}
+  end
 end
