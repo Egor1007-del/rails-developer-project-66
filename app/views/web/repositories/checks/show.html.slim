@@ -27,3 +27,31 @@
         tr
           th = t(".commit_id")
           td = @check.commit_id.presence || "—"
+        tr
+          th = t(".offense_count")
+          td = @check.offense_count
+          
+    - if @check.rubocop_files.any?
+      table.table.table-striped.mt-4
+        thead
+          tr
+            th = t(".message")
+            th = t(".cop_name")
+            th = t(".location")
+
+        tbody
+          - @check.rubocop_files.each do |file|
+            tr
+              td.fw-bold colspan="3"
+                = file["path"]
+
+            - file.fetch("offenses", []).each do |offense|
+              - location = offense.fetch("location", {})
+
+              tr
+                td = offense["message"]
+                td = offense["cop_name"]
+                td
+                  = "#{location['start_line']}:#{location['start_column']}"
+    - elsif @check.finished?
+      p.mt-4 = t(".no_offenses")
