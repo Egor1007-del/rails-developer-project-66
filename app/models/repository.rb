@@ -12,4 +12,8 @@ class Repository < ApplicationRecord
   validates :full_name, presence: true
   validates :clone_url, presence: true
   validates :ssh_url, presence: true
+
+  def latest_check
+    checks.order(created_at: :desc).first
+  end
 end
