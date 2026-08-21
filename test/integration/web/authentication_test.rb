@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AuthenticationTest < ActionDispatch::IntegrationTest
+class Web::AuthenticationTest < ActionDispatch::IntegrationTest
   test "guest sees sign in button only" do
     get root_path
 
