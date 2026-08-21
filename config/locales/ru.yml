@@ -73,6 +73,11 @@ ru:
           status: "Статус"
           passed: "Проверка пройдена"
           commit_id: "ID коммита"
+          offense_count: "Количество замечаний"
+          message: "Сообщение"
+          cop_name: "Идентификатор правила"
+          location: "Строка и символ"
+          no_offenses: "Замечаний не найдено"
   time:
     formats:
       repository: "%-d %B %Y, %H:%M"

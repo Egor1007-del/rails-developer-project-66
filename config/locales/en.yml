@@ -73,6 +73,11 @@ en:
           status: "Status"
           passed: "Passed"
           commit_id: "Commit ID"
+          offense_count: "Offense count"
+          message: "Message"
+          cop_name: "Cop name"
+          location: "Line and column"
+          no_offenses: "No offenses found"
   time:
     formats:
       repository: "%B %-d, %Y, %H:%M"
