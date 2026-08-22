@@ -31,7 +31,7 @@
           th = t(".offense_count")
           td = @check.offense_count
           
-    - if @check.files_with_offeses.any?
+    - if @check.files_with_offenses.any?
       table.table.table-striped.mt-4
         thead
           tr
@@ -40,7 +40,7 @@
             th = t(".location")
 
         tbody
-          - @check.files_with_offeses.each do |file|
+          - @check.files_with_offenses.each do |file|
             tr
               td.fw-bold colspan="3"
                 = file["path"]

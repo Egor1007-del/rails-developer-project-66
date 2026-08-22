@@ -21,7 +21,7 @@ class Repository::Check < ApplicationRecord
     end
   end
 
-  def files_with_offeses
+  def files_with_offenses
     case repository.language.to_s
     when "ruby"
       rubocop_files
@@ -60,7 +60,7 @@ class Repository::Check < ApplicationRecord
 
     return [] unless parsed_result.is_a?(Array)
 
-    result.filter_map do |file|
+    parsed_result.filter_map do |file|
       messages = file.fetch("messages", [])
 
       next if messages.empty?
@@ -82,19 +82,19 @@ class Repository::Check < ApplicationRecord
   end
 
   def rubocop_offense_count
-    result = parsed_output
+    parsed_result = parsed_output
 
-    return 0 unless result.is_a?(Hash)
+    return 0 unless parsed_result.is_a?(Hash)
 
-    result.dig("summary", "offense_count") || 0
+    parsed_result.dig("summary", "offense_count") || 0
   end
 
   def eslint_offense_count
-    result = parsed_output
+    parsed_result = parsed_output
 
-    return 0 unless result.is_a?(Array)
+    return 0 unless parsed_result.is_a?(Array)
 
-    result.sum do |file|
+    parsed_result.sum do |file|
       file.fetch("messages", []).count
     end
   end
