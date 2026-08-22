@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RepositoryChecker
-  include Import["repository_loader", "linter"]
+  include Import["repository_loader", "linters"]
 
   def call(check)
     loaded_repository = nil
@@ -13,8 +13,9 @@ class RepositoryChecker
     check.update!(
       commit_id: loaded_repository[:commit_id]
     )
+    selected_linter = linters.fetch(check.repository.language.to_s)
 
-    result = linter.call(
+    result = selected_linter.call(
       repository_path: loaded_repository[:path]
     )
 
