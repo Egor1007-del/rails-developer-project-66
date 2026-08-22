@@ -49,14 +49,14 @@ class RepositoryTest < ActiveSupport::TestCase
 
   test "does not allow unsupported language" do
     repository = repositories(:one)
-    repository.language = :javascript
+    repository.language = :python
 
     assert { !repository.valid? }
     assert { repository.errors[:language].any? }
   end
 
   test "has ruby in supported languages" do
-    assert { Repository.language.values == [ "ruby" ] }
+    assert { Repository.language.values == [ "ruby", "javascript" ] }
   end
 
   test "github id must be unique for user" do
