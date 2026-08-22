@@ -6,6 +6,7 @@ class Repository < ApplicationRecord
   has_many :checks, dependent: :destroy, inverse_of: :repository
 
   enumerize :language, in: %i[ruby javascript]
+  validates :language, presence: true
 
   validates :name, presence: true
   validates :github_id, presence: true, uniqueness: { scope: :user_id }
