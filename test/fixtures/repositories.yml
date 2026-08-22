@@ -17,3 +17,12 @@ two:
   clone_url: https://github.com/user-two/another-rails-project.git
   ssh_url: git@github.com:user-two/another-rails-project.git
   user: two
+
+three:
+  name: javascript-project
+  github_id: 1003
+  full_name: user-one/javascript-project
+  language: javascript
+  clone_url: https://github.com/user-one/javascript-project.git
+  ssh_url: git@github.com:user-one/javascript-project.git
+  user: one
