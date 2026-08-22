@@ -45,6 +45,43 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
                   )
   end
 
+  test "user checks javascript repository with eslint" do
+    sign_in(@user)
+
+    repository = repositories(:three)
+
+    assert_difference -> { repository.checks.count }, 1 do
+      post repository_checks_path(repository)
+    end
+
+    assert { response.redirect? }
+    assert { response.location == repository_url(repository) }
+
+    check = repository.checks.order(:created_at).last
+
+    assert { check.finished? }
+    assert { check.passed == false }
+    assert { check.commit_id == RepositoryLoaderStub::COMMIT_ID }
+    assert { check.output == EslintLinterStub::OUTPUT }
+    assert { check.offense_count == 1 }
+
+    get repository_check_path(repository, check)
+
+    assert { response.successful? }
+
+    assert_select "td.fw-bold",
+                  text: "/tmp/repository/app.js"
+
+    assert_select "td",
+                  text: "'userName' is not defined."
+
+    assert_select "td",
+                  text: "no-undef"
+
+    assert_select "td",
+                  text: "2:13"
+  end
+
   private
 
   def sign_in(user)
