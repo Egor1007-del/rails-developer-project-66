@@ -756,7 +756,7 @@ glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-globals@^17.11.0:
+globals@^...:
   version "17.11.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-17.11.0.tgz#d643485bb30220d7751e511cf4f68c73d3870d87"
   integrity sha512-Z2I8hM+PbJDXQDq3Icgpzv+mPdwr68iZUU9d5WW4FuXfDUQfkZaZuvjMv42/5crNyw154+9+VWXbYrUgDXbxNw==
