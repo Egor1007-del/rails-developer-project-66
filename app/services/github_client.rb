@@ -15,4 +15,19 @@ class GithubClient
   def repository(github_id)
     @client.repo(github_id.to_i)
   end
+
+  def install_hook(repository_full_name, webhook_url)
+    @client.create_hook(
+      repository_full_name,
+      "web",
+      {
+        url: webhook_url,
+        content_type: "json"
+      },
+      {
+        events: [ "push" ],
+        active: true
+      }
+    )
+  end
 end
