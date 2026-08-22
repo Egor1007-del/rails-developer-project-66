@@ -28,4 +28,7 @@ class ApplicationContainer
       }
     end
   end
+
+  register(:available_from_github) { ::Repositories::AvailableFromGithub.new }
+  register(:build_from_github) { ::Repositories::BuildFromGithub.new }
 end
