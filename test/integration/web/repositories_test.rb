@@ -140,7 +140,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
   test "user cannot create repository with unsupported language" do
     sign_in(@user)
 
-    github_repository = GithubClientStub::JAVASCRIPT_REPOSITORY
+    github_repository = GithubClientStub::PYTHON_REPOSITORY
 
     repositories_count = @user.repositories.count
 

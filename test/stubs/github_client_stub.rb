@@ -29,11 +29,20 @@ class GithubClientStub
     ssh_url: "git@github.com:user-one/javascript-project.git"
   )
 
+  PYTHON_REPOSITORY = GithubRepository.new(
+    id: 30_001,
+    name: "python-project",
+    full_name: "user-one/python-project",
+    language: "Python",
+    clone_url: "https://github.com/user-one/python-project.git",
+    ssh_url: "git@github.com:user-one/python-project.git"
+  )
+
   def initialize(_token)
   end
 
   def repositories
-    [ RUBY_REPOSITORY, JAVASCRIPT_REPOSITORY ]
+    [ RUBY_REPOSITORY, JAVASCRIPT_REPOSITORY, PYTHON_REPOSITORY ]
   end
 
   def repository(github_id)
