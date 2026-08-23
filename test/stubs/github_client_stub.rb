@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class GithubClientStub
+  class << self
+    attr_accessor :installed_webhooks
+
+    def reset_webhooks!
+      installed_webhooks.clear
+    end
+  end
+
   GithubRepository = Struct.new(
     :id,
     :name,
@@ -49,5 +57,16 @@ class GithubClientStub
     repositories.find do |repo|
       repo.id == github_id.to_i
     end
+  end
+
+  self.installed_webhooks = []
+
+  def install_webhook(repository_full_name, webhook_url)
+    self.class.installed_webhooks << {
+      repository_full_name:,
+      webhook_url:
+    }
+
+    true
   end
 end
