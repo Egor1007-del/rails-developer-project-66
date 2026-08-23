@@ -31,4 +31,5 @@ class ApplicationContainer
 
   register(:available_from_github) { ::Repositories::AvailableFromGithub.new }
   register(:build_from_github) { ::Repositories::BuildFromGithub.new }
+  register(:install_webhook) { ::InstallWebhook.new }
 end
