@@ -6,6 +6,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     @other_user = users(:two)
 
     @github_repository = GithubClientStub::RUBY_REPOSITORY
+    GithubClientStub.reset_webhooks!
   end
 
   test "guest cannot view repository pages" do
@@ -107,6 +108,18 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
 
     assert_select "a[href='#{repository_path(repository)}']",
                   text: repository.name
+
+
+    repository = @user.repositories.order(:created_at).last
+
+    assert { GithubClientStub.installed_webhooks.one? }
+
+    webhook = GithubClientStub.installed_webhooks.first
+
+    expected_webhook_url = Rails.application.routes.url_helpers.api_checks_url
+
+    assert { webhook[:repository_full_name] == repository.full_name }
+    assert { webhook[:webhook_url] == expected_webhook_url }
   end
 
   test "show displays repository full name as heading and check button" do
