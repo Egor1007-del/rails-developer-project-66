@@ -13,6 +13,9 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
                full_name: @repository.full_name
              }
            },
+           headers: {
+            "X-GitHub-Event" => "push"
+           },
            as: :json
     end
 
@@ -24,5 +27,22 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
     assert { check.passed == true }
     assert { check.commit_id.present? }
     assert { check.output.present? }
+  end
+
+  test "does not create repository check for ping event" do
+    assert_no_difference -> { @repository.checks.count } do
+      post api_checks_path,
+           params: {
+             repository: {
+               full_name: @repository.full_name
+             }
+           },
+           headers: {
+             "X-GitHub-Event" => "ping"
+           },
+           as: :json
+    end
+
+    assert_response :success
   end
 end
