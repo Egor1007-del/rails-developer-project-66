@@ -16,7 +16,7 @@ class GithubClient
     @client.repo(github_id.to_i)
   end
 
-  def install_hook(repository_full_name, webhook_url)
+  def install_webhook(repository_full_name, webhook_url)
     @client.create_hook(
       repository_full_name,
       "web",
