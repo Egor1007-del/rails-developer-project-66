@@ -15,6 +15,9 @@ module RailsDeveloperProject66
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
     config.i18n.fallbacks = [ :en ]
-    routes.default_url_options = { host: ENV["BASE_URL"] }
+    routes.default_url_options = {
+      host: ENV["BASE_URL"],
+      protocol: "https"
+    }
   end
 end
