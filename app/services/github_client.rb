@@ -17,6 +17,8 @@ class GithubClient
   end
 
   def install_webhook(repository_full_name, webhook_url)
+    return if webhook_exist?(repository_full_name, webhook_url)
+
     @client.create_hook(
       repository_full_name,
       "web",
@@ -29,5 +31,13 @@ class GithubClient
         active: true
       }
     )
+  end
+
+  private
+
+  def webhook_exist?(repository_full_name, webhook_url)
+    @client.hooks(repository_full_name).any? do |hook|
+      hook.config.url == webhook_url
+    end
   end
 end
