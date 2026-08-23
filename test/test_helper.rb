@@ -1,4 +1,5 @@
 ENV["RAILS_ENV"] ||= "test"
+ENV["BASE_URL"] ||= "localhost:3000"
 
 require_relative "../config/environment"
 require "rails/test_help"
