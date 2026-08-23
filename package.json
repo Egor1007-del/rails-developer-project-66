@@ -24,10 +24,7 @@
     "nodemon": "^3.1.14",
     "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1",
-    "sass": "^1.102.0",
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.9.0",
-    "globals": "^..."
+    "sass": "^1.102.0"
   },
   "browserslist": [
     "defaults"
