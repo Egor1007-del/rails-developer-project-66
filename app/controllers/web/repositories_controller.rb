@@ -22,6 +22,12 @@ module Web
       @repository = build_from_github.call(user: current_user, github_id: repository_params[:github_id])
 
       if @repository.save
+
+        install_webhook.call(
+          user: current_user,
+          repository: @repository
+        )
+
         redirect_to repositories_path, notice: t(".success")
       else
         @github_repositories = available_from_github.call(
@@ -40,6 +46,10 @@ module Web
 
     def available_from_github
       @available_from_github ||= ApplicationContainer[:available_from_github]
+    end
+
+    def install_webhook
+      @install_webhook ||= ApplicationContainer[:install_webhook]
     end
 
     def set_repository
