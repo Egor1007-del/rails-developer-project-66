@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] ||= "test"
 ENV["BASE_URL"] ||= "localhost:3000"
+ENV["GITHUB_WEBHOOK_SECRET"] = "test-webhook-secret"
 
 require_relative "../config/environment"
 require "rails/test_help"
