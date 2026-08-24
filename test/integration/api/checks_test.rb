@@ -2,6 +2,7 @@ require "test_helper"
 require "openssl"
 
 class Api::ChecksTest < ActionDispatch::IntegrationTest
+  include ActiveJob::TestHelper
   setup do
     @repository = repositories(:one)
   end
@@ -11,11 +12,12 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
         full_name: @repository.full_name
       }
     }.to_json
-
-    assert_difference -> { @repository.checks.count }, 1 do
-      post api_checks_path,
-           params: payload,
-           headers: webhook_headers("push", payload)
+    perform_enqueued_jobs do
+      assert_difference -> { @repository.checks.count }, 1 do
+        post api_checks_path,
+            params: payload,
+            headers: webhook_headers("push", payload)
+      end
     end
 
     assert_response :success
@@ -34,11 +36,12 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
         full_name: @repository.full_name
       }
     }.to_json
-
-    assert_no_difference -> { @repository.checks.count } do
-      post api_checks_path,
-           params: payload,
-           headers: webhook_headers("ping", payload)
+    perform_enqueued_jobs do
+      assert_no_difference -> { @repository.checks.count } do
+        post api_checks_path,
+            params: payload,
+            headers: webhook_headers("ping", payload)
+      end
     end
 
     assert_response :success
@@ -54,10 +57,12 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
     headers = webhook_headers("push", payload)
     headers["X-Hub-Signature-256"] = "sha256=invalid"
 
-    assert_no_difference -> { @repository.checks.count } do
-      post api_checks_path,
-           params: payload,
-           headers: headers
+    perform_enqueued_jobs do
+      assert_no_difference -> { @repository.checks.count } do
+        post api_checks_path,
+            params: payload,
+            headers: headers
+      end
     end
 
     assert_response :unauthorized

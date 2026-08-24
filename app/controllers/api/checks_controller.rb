@@ -12,9 +12,9 @@ module Api
 
       check = repository.checks.create!
 
-      RepositoryChecker.new.call(check)
+      RepositoryCheckJob.perform_later(check)
 
-      head :ok
+      head :accepted
     end
 
     private
