@@ -16,7 +16,7 @@ class GithubClient
     @client.repo(github_id.to_i)
   end
 
-  def install_webhook(repository_full_name, webhook_url)
+  def install_webhook(repository_full_name, webhook_url, webhook_secret)
     return if webhook_exist?(repository_full_name, webhook_url)
 
     @client.create_hook(
@@ -24,7 +24,8 @@ class GithubClient
       "web",
       {
         url: webhook_url,
-        content_type: "json"
+        content_type: "json",
+        secret: webhook_secret
       },
       {
         events: [ "push" ],
