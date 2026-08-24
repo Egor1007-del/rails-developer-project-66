@@ -61,10 +61,11 @@ class GithubClientStub
 
   self.installed_webhooks = []
 
-  def install_webhook(repository_full_name, webhook_url)
+  def install_webhook(repository_full_name, webhook_url, webhook_secret)
     self.class.installed_webhooks << {
       repository_full_name:,
-      webhook_url:
+      webhook_url:,
+      webhook_secret:
     }
 
     true
