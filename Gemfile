@@ -56,6 +56,9 @@ gem "dry-auto_inject"
 
 gem "aasm"
 
+# Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+gem "rubocop-rails-omakase", require: false
+
 group :production do
   gem "pg", "~> 1.5"
 end
@@ -72,9 +75,6 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
 
   gem "dotenv-rails"
 
