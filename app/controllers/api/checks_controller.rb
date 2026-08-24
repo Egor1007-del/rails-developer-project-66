@@ -1,6 +1,7 @@
 module Api
   class ChecksController < ApplicationController
     skip_forgery_protection only: :create
+    before_action :verify_webhook_signature!
 
     def create
       return head :ok unless push_event?
@@ -17,6 +18,28 @@ module Api
     end
 
     private
+
+    def verify_webhook_signature!
+      signature =
+        request.headers["X-Hub-Signature-256"]
+
+      return head :unauthorized if signature.blank?
+
+      expected_signature = OpenSSL::HMAC.hexdigest(
+        "SHA256",
+        ENV.fetch("GITHUB_WEBHOOK_SECRET"),
+        request.raw_post
+      )
+
+      expected_signature = "sha256=#{expected_signature}"
+
+      return if ActiveSupport::SecurityUtils.secure_compare(
+        expected_signature,
+        signature
+      )
+
+      head :unauthorized
+    end
 
     def repository_params
       params.require(:repository).permit(:full_name)
