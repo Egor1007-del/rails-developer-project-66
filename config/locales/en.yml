@@ -79,6 +79,13 @@ en:
           cop_name: "Cop name"
           location: "Line and column"
           no_offenses: "No offenses found"
+  repository_check_mailer:
+    check_failed:
+      subject: "Repository check completed with errors"
+      title: "Repository check completed with errors"
+      repository: "Repository: %{repository}"
+      message: "The check was not completed successfully. Open the report to view the details."
+      show_report: "View report"
   time:
     formats:
       repository: "%B %-d, %Y, %H:%M"
