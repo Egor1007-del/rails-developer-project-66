@@ -26,8 +26,11 @@ class RepositoryChecker
 
     check.finish!
 
+    RepositoryCheckMailer.check_failed(check).deliver_later unless check.passed?
+
   rescue StandardError
     check.fail! if check.may_fail?
+    RepositoryCheckMailer.check_failed(check).deliver_later
     raise
   ensure
     if loaded_repository
