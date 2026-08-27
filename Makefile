@@ -1,6 +1,6 @@
 PORT ?= 3000
 
-.PHONY: setup start
+.PHONY: setup start lint
 
 setup:
 	cp .env.example .env
@@ -10,3 +10,6 @@ setup:
 
 start:
 	bin/rails server -b 0.0.0.0 -p $(PORT)
+
+lint:
+	bundle exec rubocop
