@@ -1,19 +1,16 @@
 en:
-  active_record:
+  activerecord:
+    attributes:
+      repository:
+        github_id: "GitHub"
     errors:
       models:
         repository:
           attributes:
             language:
               inclusion: "must be Ruby"
-  auth:
-    callback:
-      success: "You have successfully signed in with GitHub"
-    failure:
-      failure: "Failed to sign in with GitHub"
-    destroy:
-      success: "You have signed out"
-    required: "You need to sign in to continue"
+            github_id:
+                taken: "already added"
   layouts:
     header:
       home: "Home"
@@ -29,7 +26,16 @@ en:
         title: "Repository Quality Analyzer"
         description: "A project that helps automatically monitor the quality of repositories on GitHub. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user."
         learn_more: "Learn more"
-        
+    auth:
+      callback:
+        success: "You have successfully signed in with GitHub"
+      failure:
+        failure: "Failed to sign in with GitHub"
+      destroy:
+        success: "You have signed out"
+      required: "You need to sign in to continue"
+      logout:
+          success: "You have successfully logged in"
     repositories:
       index:
         title: "Repositories"

@@ -1,19 +1,16 @@
 ru:
-  active_record:
+  activerecord:
+    attributes:
+      repository:
+        github_id: "GitHub"
     errors:
       models:
         repository:
           attributes:
             language:
               inclusion: "должен быть Ruby"
-  auth:
-    callback:
-      success: "Вы успешно вошли через GitHub"
-    failure:
-      failure: "Не удалось выполнить вход через GitHub"
-    destroy:
-      success: "Вы вышли из системы"
-    required: "Для продолжения необходимо войти"
+            github_id:
+                taken: "уже добавлен"
   layouts:
     header:
       home: "Главная"
@@ -29,6 +26,16 @@ ru:
         title: "Анализатор качества репозиториев"
         description: "Проект, который помогает автоматически следить за качеством репозиториев на GitHub. Он отслеживает изменения и прогоняет их через встроенные анализаторы. Затем формирует отчеты и отправляет их пользователю."
         learn_more: "Узнать больше"
+    auth:
+      callback:
+        success: "Вы успешно вошли через GitHub"
+      failure:
+        failure: "Не удалось выполнить вход через GitHub"
+      destroy:
+        success: "Вы вышли из системы"
+      required: "Для продолжения необходимо войти"
+      logout:
+          success: "Вы успешно вышли"
   
     repositories:
       index:
