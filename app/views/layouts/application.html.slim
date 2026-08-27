@@ -21,6 +21,6 @@ html
     = Sentry.get_trace_propagation_meta.html_safe
   body
     = render "shared/header"
-    
+    = render "shared/flash"
     main.container.py-4
       = yield
