@@ -1,11 +1,12 @@
-section.card.shadow-sm.mt-3
-  .card-body.p-4
-    h1.display-4.fw-bold = t(".welcome")
+- cache ["home-hero", I18n.locale, "v1"] do
+  section.card.shadow-sm.mt-3
+    .card-body.p-4
+      h1.display-4.fw-bold = t(".welcome")
 
-    p.mb-4 = t(".hexlet_description")
+      p.mb-4 = t(".hexlet_description")
 
-    h2.fw-bold = t(".title")
+      h2.fw-bold = t(".title")
 
-    p.mb-4 = t(".description")
+      p.mb-4 = t(".description")
 
-    = link_to t(".learn_more"), "#", class: "btn btn-primary btn-lg fw-bold"
+      = link_to t(".learn_more"), "#", class: "btn btn-primary btn-lg fw-bold"
