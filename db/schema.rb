@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_19_184444) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_27_223822) do
   create_table "repositories", force: :cascade do |t|
     t.string "clone_url", null: false
     t.datetime "created_at", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_19_184444) do
     t.boolean "passed"
     t.integer "repository_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["repository_id", "created_at"], name: "index_repository_checks_on_repository_id_and_created_at"
     t.index ["repository_id"], name: "index_repository_checks_on_repository_id"
   end
 
