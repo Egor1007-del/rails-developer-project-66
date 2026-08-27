@@ -47,25 +47,8 @@
               th = t(".checks.created_at")
 
           tbody
-            - @checks.each do |check|
-              tr
-                td
-                  = link_to check.id,
-                            repository_check_path(@repository, check)
-
-                td
-                  = t("web.repositories.checks.states.#{check.aasm_state}")
-
-                td
-                  = check.commit_id.presence || "—"
-
-                td
-                  - if check.passed.nil?
-                    | —
-                  - else
-                    = check.passed
-
-                td
-                  = l(check.created_at, format: :check)
+            = render partial: "check",
+              collection: @checks
+            
       - else
         p.text-muted.mt-4 = t(".checks.empty")

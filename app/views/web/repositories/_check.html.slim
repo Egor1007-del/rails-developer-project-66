@@ -1,0 +1,19 @@
+tr 
+  td
+    = link_to check.id,
+              repository_check_path(check.repository, check)
+
+  td
+    = t("web.repositories.checks.states.#{check.aasm_state}")
+
+  td
+    = check.commit_id.presence || "—"
+
+  td
+    - if check.passed.nil?
+      | —
+    - else
+      = check.passed
+
+  td
+    = l(check.created_at, format: :check)
