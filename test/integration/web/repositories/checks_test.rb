@@ -9,8 +9,10 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
   test "user creates repository check" do
     sign_in(@user)
 
-    assert_difference -> { @repository.checks.count }, 1 do
-      post repository_checks_path(@repository)
+    assert_enqueued_with(job: RepositoryCheckJob) do
+      assert_difference -> { @repository.checks.count }, 1 do
+        post repository_checks_path(@repository)
+      end
     end
 
     assert { response.redirect? }
@@ -18,10 +20,7 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
 
     check = @repository.checks.order(:created_at).last
 
-    assert { check.finished? }
-    assert { check.passed == true }
-    assert { check.commit_id.present? }
-    assert { check.output.present? }
+    assert { check.created? }
   end
 
   test "user views repository check" do
@@ -50,8 +49,10 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
 
     repository = repositories(:three)
 
-    assert_difference -> { repository.checks.count }, 1 do
-      post repository_checks_path(repository)
+    perform_enqueued_jobs(only: RepositoryCheckJob) do
+      assert_difference -> { repository.checks.count }, 1 do
+        post repository_checks_path(repository)
+      end
     end
 
     assert { response.redirect? }
