@@ -12,7 +12,7 @@ module Web
       def create
         check = @repository.checks.create!
 
-        RepositoryChecker.new.call(check)
+        RepositoryCheckJob.perform_later(check)
 
         redirect_to repository_path(@repository)
       end
