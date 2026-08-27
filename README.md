@@ -14,7 +14,7 @@
 
 Приложение доступно по адресу:
 
-[Открыть приложение](https://rails-developer-project-66-1.onrender.com/)
+[Открыть приложение](https://rails-developer-project-66-2.onrender.com/)
 
 ## Возможности
 
