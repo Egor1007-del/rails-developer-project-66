@@ -5,6 +5,10 @@ class Repository < ApplicationRecord
 
   has_many :checks, dependent: :destroy, inverse_of: :repository
 
+  has_one :latest_check,
+        -> { order(created_at: :desc, id: :desc) },
+        class_name: "Repository::Check"
+
   enumerize :language, in: %i[ruby javascript]
   validates :language, presence: true
 
@@ -13,8 +17,4 @@ class Repository < ApplicationRecord
   validates :full_name, presence: true
   validates :clone_url, presence: true
   validates :ssh_url, presence: true
-
-  def latest_check
-    checks.order(created_at: :desc).first
-  end
 end

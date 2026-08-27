@@ -3,7 +3,7 @@ module Web
     before_action :authenticate_user!
 
     def index
-      @repositories = current_user.repositories
+      @repositories = current_user.repositories.includes(:latest_check)
     end
 
     def new
