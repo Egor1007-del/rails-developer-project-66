@@ -134,10 +134,8 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     assert_select "h1",
                   text: repository.full_name
 
-    assert_select "form[action='#{repository_checks_path(repository)}']" do
-      assert_select "button",
+      assert_select "a[href='#{repository_checks_path(repository)}']",
                     text: I18n.t("web.repositories.show.check")
-    end
   end
 
   test "user cannot view another users repository" do
