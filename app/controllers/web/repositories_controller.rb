@@ -29,12 +29,9 @@ module Web
         )
 
         redirect_to repositories_path, notice: t(".success")
+
       else
-        @github_repositories = available_from_github.call(
-          user: current_user
-        )
-        flash.now[:alert] = t(".failure")
-        render :new, status: :unprocessable_entity
+        redirect_to repositories_path, alert: t(".failure")
       end
     end
 
