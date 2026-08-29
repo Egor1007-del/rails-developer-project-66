@@ -4,7 +4,7 @@ module Api
     before_action :verify_webhook_signature!
 
     def create
-      return head :ok unless push_event?
+      return head :ok if unsupported_event?
 
       repository = Repository.find_by!(
         full_name: repository_params[:full_name]
@@ -49,8 +49,10 @@ module Api
       params.require(:repository).permit(:full_name)
     end
 
-    def push_event?
-      request.headers["X-GitHub-Event"] == "push"
+    def unsupported_event?
+      event = request.headers["X-GitHub-Event"]
+
+      event.present? && event != "push"
     end
   end
 end
