@@ -3,9 +3,9 @@
     .card-body.p-4
       h1.mb-4 = @repository.full_name
 
-      = button_to t(".check"),
+      = link_to t(".check"),
             repository_checks_path(@repository),
-            method: :post,
+            data: { turbo_method: :post },
             class: "btn btn-primary mb-4"
 
       table.table.mb-0
