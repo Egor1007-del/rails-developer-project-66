@@ -3,12 +3,9 @@ module Repositories
     include Import["github_client"]
 
     def call(user:)
-      existing_github_ids = user.repositories.pluck(:github_id)
-
       Rails.cache.fetch(
-        [ "available-github-repositories", user.cache_key_with_version,
-          existing_github_ids.sort ],
-        expires_in: 5.minutes) do
+        [ "available-github-repositories", user.cache_key_with_version ],
+        expres_in: 5.minutes) do
         github_repositories = github_client
           .new(user.token)
           .repositories
@@ -18,8 +15,7 @@ module Repositories
         github_repositories.select do |github_repository|
           language = github_repository.language&.downcase
 
-          supported_languages.include?(language)&&
-            existing_github_ids.exclude?(github_repository.id)
+          supported_languages.include?(language)
         end
       end
     end
