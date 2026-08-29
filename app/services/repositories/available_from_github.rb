@@ -5,7 +5,7 @@ module Repositories
     def call(user:)
       Rails.cache.fetch(
         [ "available-github-repositories", user.cache_key_with_version ],
-        expres_in: 5.minutes) do
+        expires_in: 5.minutes) do
         github_repositories = github_client
           .new(user.token)
           .repositories
