@@ -14,12 +14,16 @@ module Api
 
       RepositoryCheckJob.perform_later(check)
 
-      head :accepted
+      head :ok
     end
 
     private
 
     def verify_webhook_signature!
+      webhook_secret = ENV["GITHUB_WEBHOOK_SECRET"]
+
+      return if webhook_secret.blank?
+
       signature =
         request.headers["X-Hub-Signature-256"]
 
