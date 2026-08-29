@@ -166,7 +166,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
         }
 
 
-    assert { response.status == 422 }
+    assert { response.status == 302 }
     assert { @user.repositories.count == repositories_count }
 
     assert do
@@ -175,8 +175,10 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
       ).nil?
     end
 
-    assert_select "input[type='submit']",
-                  value: I18n.t("web.repositories.new.submit")
+    follow_redirect!
+
+    assert_select "a[href='#{new_repository_path}']",
+                  text: I18n.t("web.repositories.index.add")
   end
 
   test "user cannot add same github repository twice" do
@@ -199,7 +201,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
           }
         }
 
-    assert { response.status == 422 }
+    assert { response.status == 302 }
     assert { @user.repositories.count == repositories_count }
 
     assert do
@@ -208,8 +210,10 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
       ).count == 1
     end
 
-    assert_select "input[type='submit']",
-                  value: I18n.t("web.repositories.new.submit")
+    follow_redirect!
+
+    assert_select "a[href='#{new_repository_path}']",
+                  text: I18n.t("web.repositories.index.add")
   end
 
   test "index displays latest repository check result" do
