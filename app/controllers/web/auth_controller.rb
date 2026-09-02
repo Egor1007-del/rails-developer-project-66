@@ -7,7 +7,7 @@ module Web
 
       user.nickname = auth.dig("info", "nickname")
       user.name = auth.dig("info", "name")
-      user.email = auth.dig("info", "email")
+      user.email = auth.dig("info", "email")&.downcase
       user.image_url = auth.dig("info", "image")
       user.token = auth.dig("credentials", "token")
 
