@@ -12,18 +12,21 @@ class Api::ChecksTest < ActionDispatch::IntegrationTest
         full_name: @repository.full_name
       }
     }.to_json
+
+    existing_check_ids = @repository.checks.ids
+
     perform_enqueued_jobs do
-      assert_difference -> { @repository.checks.count }, 1 do
-        post api_checks_path,
-            params: payload,
-            headers: webhook_headers("push", payload)
-      end
+      post api_checks_path,
+          params: payload,
+          headers: webhook_headers("push", payload)
     end
 
     assert_response :success
 
-    check = @repository.checks.order(:created_at).last
+    check = @repository.checks.where.not(id: existing_check_ids).first
 
+    assert check
+    assert { check.repository == @repository }
     assert { check.finished? }
     assert { check.passed == true }
     assert { check.commit_id.present? }

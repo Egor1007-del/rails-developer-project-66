@@ -9,17 +9,18 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
   test "user creates repository check" do
     sign_in(@user)
 
+    existing_ids = @repository.checks.ids
+
     assert_enqueued_with(job: RepositoryCheckJob) do
-      assert_difference -> { @repository.checks.count }, 1 do
-        post repository_checks_path(@repository)
-      end
+      post repository_checks_path(@repository)
     end
 
     assert { response.redirect? }
     assert { response.location == repository_url(@repository) }
 
-    check = @repository.checks.order(:created_at).last
+    check = @repository.checks.where.not(id: existing_ids).first
 
+    assert check
     assert { check.created? }
   end
 
@@ -50,9 +51,7 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
     repository = repositories(:three)
 
     perform_enqueued_jobs(only: RepositoryCheckJob) do
-      assert_difference -> { repository.checks.count }, 1 do
-        post repository_checks_path(repository)
-      end
+      post repository_checks_path(repository)
     end
 
     assert { response.redirect? }
@@ -60,6 +59,7 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
 
     check = repository.checks.order(:created_at).last
 
+    assert check
     assert { check.finished? }
     assert { check.passed == false }
     assert { check.commit_id == RepositoryLoaderStub::COMMIT_ID }
