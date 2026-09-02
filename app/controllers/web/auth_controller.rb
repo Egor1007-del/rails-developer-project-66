@@ -13,7 +13,7 @@ module Web
 
       user.save!
 
-      session[:user_id] = user.id
+      sign_in(user)
 
       redirect_to root_path, notice: t(".success")
     end
@@ -23,7 +23,7 @@ module Web
     end
 
     def logout
-      reset_session
+      sign_out
       redirect_to root_path, notice: t(".success")
     end
 
@@ -37,7 +37,7 @@ module Web
         new_user.token = "test_token"
       end
 
-      session[:user_id] = user.id
+      sign_in(user)
 
       head :ok
     end
