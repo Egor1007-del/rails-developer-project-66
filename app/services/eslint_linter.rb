@@ -14,7 +14,7 @@ class EslintLinter
       repository_path.to_s
     )
 
-    raise Erorr, stderr if status.exitstatus > 1
+    raise Error, stderr if status.exitstatus > 1
 
     {
       passed: status.success?,
