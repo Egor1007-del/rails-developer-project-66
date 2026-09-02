@@ -29,13 +29,14 @@ ru:
     auth:
       callback:
         success: "Вы успешно вошли через GitHub"
+        failure: "Не удалось сохранить данные пользователя"
       failure:
         failure: "Не удалось выполнить вход через GitHub"
       destroy:
         success: "Вы вышли из системы"
       required: "Для продолжения необходимо войти"
       logout:
-          success: "Вы успешно вышли"
+        success: "Вы успешно вышли"
   
     repositories:
       index:

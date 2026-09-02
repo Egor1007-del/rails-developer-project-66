@@ -29,13 +29,14 @@ en:
     auth:
       callback:
         success: "You have successfully signed in with GitHub"
+        failure: "Failed to save user data"
       failure:
         failure: "Failed to sign in with GitHub"
       destroy:
         success: "You have signed out"
       required: "You need to sign in to continue"
       logout:
-          success: "You have successfully logged in"
+        success: "You have successfully logged out"
     repositories:
       index:
         title: "Repositories"
