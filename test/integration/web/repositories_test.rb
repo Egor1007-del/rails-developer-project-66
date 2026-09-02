@@ -246,12 +246,4 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     assert_select "td", text: "true", count: 1
     assert_select "td", text: "false", count: 0
   end
-
-  private
-
-  def sign_in(user)
-    post "/test/session", params: { email: user.email }
-
-    assert { response.successful? }
-  end
 end
