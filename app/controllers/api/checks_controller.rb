@@ -1,6 +1,5 @@
 module Api
   class ChecksController < ApplicationController
-    skip_forgery_protection only: :create
     before_action :verify_webhook_signature!
 
     def create

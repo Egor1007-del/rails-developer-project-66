@@ -2,6 +2,7 @@
 
 module Web
   class ApplicationController < ::ApplicationController
+    allow_browser versions: :modern
     helper_method :current_user, :signed_in?
 
     private
