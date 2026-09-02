@@ -3,7 +3,12 @@ module Web
     before_action :authenticate_user!
 
     def index
-      @repositories = current_user.repositories.includes(:latest_check)
+      @pagy, @repositories = pagy(
+        current_user.repositories
+                    .includes(:latest_check)
+                    .order(created_at: :desc),
+        items: 10
+      )
     end
 
     def new
@@ -15,7 +20,10 @@ module Web
 
     def show
       set_repository
-      @checks = @repository.checks.order(created_at: :desc).limit(10)
+      @pagy, @checks = pagy(
+        @repository.checks.order(created_at: :desc),
+        items: 10
+      )
     end
 
     def create

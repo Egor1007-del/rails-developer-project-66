@@ -97,5 +97,10 @@ en:
     formats:
       repository: "%B %-d, %Y, %H:%M"
       check: "%B %-d, %H:%M"
+  pagy:
+    nav:
+      prev: "Prev"
+      next: "Next"
+      gap: "…"
  
  

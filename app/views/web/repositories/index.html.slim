@@ -34,3 +34,6 @@
                     = latest_check.passed
       - else
         p.text-muted.mb-0 = t(".empty")
+      - if @pagy.pages > 1
+        .d-flex.justify-content-center.mt-4
+          == pagy_bootstrap_nav(@pagy)
