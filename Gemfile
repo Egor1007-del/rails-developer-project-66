@@ -59,6 +59,8 @@ gem "aasm"
 # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
 gem "rubocop-rails-omakase", require: false
 
+gem "pagy"
+
 group :production do
   gem "pg", "~> 1.5"
 end
