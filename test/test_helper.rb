@@ -5,7 +5,6 @@ ENV["GITHUB_WEBHOOK_SECRET"] = "test-webhook-secret"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/mock"
-require_relative "stubs/github_client_stub"
 require "webmock/minitest"
 
 ActiveJob::Base.queue_adapter = :test

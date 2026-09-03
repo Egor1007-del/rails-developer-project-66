@@ -5,8 +5,8 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     @other_user = users(:two)
 
-    @github_repository = GithubClientStub::RUBY_REPOSITORY
-    GithubClientStub.reset_webhooks!
+    @github_repository = Stubs::GithubClientStub::RUBY_REPOSITORY
+    Stubs::GithubClientStub.reset_webhooks!
   end
 
   test "guest cannot view repository pages" do
@@ -112,9 +112,9 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
 
     repository = @user.repositories.order(:created_at).last
 
-    assert { GithubClientStub.installed_webhooks.one? }
+    assert { Stubs::GithubClientStub.installed_webhooks.one? }
 
-    webhook = GithubClientStub.installed_webhooks.first
+    webhook = Stubs::GithubClientStub.installed_webhooks.first
 
     expected_webhook_url = Rails.application.routes.url_helpers.api_checks_url
 
@@ -151,7 +151,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
   test "user cannot create repository with unsupported language" do
     sign_in(@user)
 
-    github_repository = GithubClientStub::PYTHON_REPOSITORY
+    github_repository = Stubs::GithubClientStub::PYTHON_REPOSITORY
 
     repositories_count = @user.repositories.count
 
@@ -184,7 +184,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
 
     existing_repository = repositories(:one)
 
-    github_repository = GithubClientStub::RUBY_REPOSITORY
+    github_repository = Stubs::GithubClientStub::RUBY_REPOSITORY
 
     existing_repository.update!(
       github_id: github_repository.id
