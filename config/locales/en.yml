@@ -87,12 +87,22 @@ en:
           location: "Line and column"
           no_offenses: "No offenses found"
   repository_check_mailer:
-    check_failed:
-      subject: "Repository check completed with errors"
-      title: "Repository check completed with errors"
+    error_check_email:
+      subject: "Repository check error"
+      title: "Repository check failed"
       repository: "Repository: %{repository}"
-      message: "The check was not completed successfully. Open the report to view the details."
-      show_report: "View report"
+      message: "The repository check could not be completed."
+      show_report: "Open check"
+
+    failed_check_email:
+      subject: "Repository issues found"
+      title: "Issues found in repository"
+      repository: "Repository: %{repository}"
+      message: "The check completed, but issues were found."
+      offenses:
+        one: "%{count} issue found."
+        other: "%{count} issues found."
+      show_report: "Open report"
   time:
     formats:
       repository: "%B %-d, %Y, %H:%M"

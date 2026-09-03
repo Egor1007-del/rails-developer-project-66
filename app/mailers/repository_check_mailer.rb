@@ -1,7 +1,21 @@
 class RepositoryCheckMailer < ApplicationMailer
-  def check_failed(check)
-    @check = check
+  def error_check_email
+    @check = params[:check]
+    @user = params[:user]
 
-    mail to: check.repository.user.email
+    mail(
+      to: @user.email,
+      subject: t(".subject")
+    )
+  end
+
+  def failed_check_email
+    @check = params[:check]
+    @user = params[:user]
+
+    mail(
+      to: @user.email,
+      subject: t(".subject")
+    )
   end
 end
