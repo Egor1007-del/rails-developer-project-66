@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :checks, only: :create
   end
+
+  if Rails.env.test?
+    post "/test/session", to: "web/auth#test_session"
+  end
 end

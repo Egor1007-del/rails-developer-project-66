@@ -18,28 +18,14 @@ class Web::AuthenticationTest < ActionDispatch::IntegrationTest
                   text: I18n.t("layouts.header.repositories"),
                   count: 0
   end
-  test "github callback creates and signs in user" do
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-      provider: "github",
-      uid: "999999",
-      info: {
-        nickname: "new_user",
-        name: "New User",
-        email: "new@example.com",
-        image: "image"
-      },
-      credentials: {
-        token: "token"
-      }
-    )
-
+  test "test session creates and signs in user" do
     assert_difference("User.count", 1) do
-      get "/auth/github/callback"
+      post "/test/session", params: { email: "test@example.com" }
     end
 
-    assert_redirected_to root_path
+    assert_response :success
 
-    follow_redirect!
+    get root_path
 
     assert_response :success
 
@@ -53,14 +39,13 @@ class Web::AuthenticationTest < ActionDispatch::IntegrationTest
                   text: I18n.t("layouts.header.sign_in"),
                   count: 0
   end
-  test "github callbackn signs in existing user without creating duplicate" do
+  test "test session signs in existing user without creating duplicate" do
     user = users(:one)
 
     assert_no_difference("User.count") do
-      sign_in(user)
+      post "/test/session", params: { email: user.email }
     end
 
-    follow_redirect!
 
     assert_response :success
 
@@ -77,9 +62,7 @@ class Web::AuthenticationTest < ActionDispatch::IntegrationTest
   test "signed in user can sign out" do
     user = users(:one)
 
-    sign_in(user)
-
-    follow_redirect!
+    post "/test/session", params: { email: user.email }
 
     assert_response :success
 

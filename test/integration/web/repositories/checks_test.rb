@@ -82,4 +82,15 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
     assert_select "td",
                   text: "2:13"
   end
+
+  private
+
+  def sign_in(user)
+    post "/test/session",
+          params: {
+            email: user.email
+          }
+
+    assert { response.successful? }
+  end
 end
