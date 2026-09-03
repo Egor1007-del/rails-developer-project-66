@@ -26,15 +26,24 @@ class RepositoryChecker
 
     check.finish!
 
-    RepositoryCheckMailer.check_failed(check).deliver_later unless check.passed?
-
   rescue StandardError
     check.fail! if check.may_fail?
-    RepositoryCheckMailer.check_failed(check).deliver_later
-    raise
   ensure
-    if loaded_repository
-      repository_loader.cleanup(loaded_repository[:path])
+    repository_loader.cleanup(loaded_repository[:path]) if loaded_repository
+    send_notification(check)
+  end
+
+  private
+
+  def send_notification(check)
+    mailer = RepositoryCheckMailer.with(
+      user: check.repository.user,
+      check: check
+    )
+    if check.failed?
+      mailer.error_check_email.deliver_later
+    elsif !check.passed?
+      mailer.failed_check_email.deliver_later
     end
   end
 end

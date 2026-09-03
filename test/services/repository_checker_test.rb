@@ -59,11 +59,7 @@ class RepositoryCheckTest < ActiveSupport::TestCase
     )
 
     assert_enqueued_emails 1 do
-      error = assert_raises RuntimeError do
-        checker.call(@check)
-      end
-
-      assert { error.message == "Linter failed" }
+      checker.call(@check)
     end
 
     assert { @check.reload.failed? }
