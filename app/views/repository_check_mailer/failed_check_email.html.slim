@@ -1,0 +1,11 @@
+h1 = t(".title")
+
+p = t(".repository", repository: @check.repository.full_name)
+
+p = t(".message")
+
+p = t(".offenses", count: @check.offense_count)
+
+p
+  = link_to t(".show_report"),
+            repository_check_url(@check.repository, @check)

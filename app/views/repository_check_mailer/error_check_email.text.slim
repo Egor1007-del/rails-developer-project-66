@@ -1,0 +1,8 @@
+= t(".title")
+
+= t(".repository", repository: @check.repository.full_name)
+
+= t(".message")
+
+= t(".show_report")
+= repository_check_url(@check.repository, @check)

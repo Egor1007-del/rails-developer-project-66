@@ -1,0 +1,10 @@
+= t(".title")
+
+= t(".repository", repository: @check.repository.full_name)
+
+= t(".message")
+
+= t(".offenses", count: @check.offense_count)
+
+= t(".show_report")
+= repository_check_url(@check.repository, @check)
