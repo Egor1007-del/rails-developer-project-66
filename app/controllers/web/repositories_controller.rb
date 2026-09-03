@@ -46,15 +46,15 @@ module Web
     private
 
     def build_from_github
-      @build_from_github ||= ApplicationContainer[:build_from_github]
+      @build_from_github ||= ::Repositories::BuildFromGithub.new
     end
 
     def available_from_github
-      @available_from_github ||= ApplicationContainer[:available_from_github]
+      @available_from_github ||= ::Repositories::AvailableFromGithub.new
     end
 
     def install_webhook
-      @install_webhook ||= ApplicationContainer[:install_webhook]
+      @install_webhook ||= ::InstallWebhook.new
     end
 
     def set_repository
