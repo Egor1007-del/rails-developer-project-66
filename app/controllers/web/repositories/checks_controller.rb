@@ -7,6 +7,11 @@ module Web
 
       def show
         @check = @repository.checks.find(params[:id])
+
+        @check_result = LogFormatter.format(
+          @check.output,
+          @check.repository.language
+        )
       end
 
       def create

@@ -13,6 +13,11 @@ class RepositoryCheckMailer < ApplicationMailer
     @check = params[:check]
     @user = params[:user]
 
+    @check_result = LogFormatter.format(
+      @check.output,
+      @check.repository.language
+    )
+
     mail(
       to: @user.email,
       subject: t(".subject")
