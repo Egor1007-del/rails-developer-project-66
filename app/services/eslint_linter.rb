@@ -11,7 +11,8 @@ class EslintLinter
       Rails.root.join("eslint.config.mjs").to_s,
       "--format",
       "json",
-      repository_path.to_s
+      ".",
+      chdir: repository_path.to_s
     )
 
     raise Error, stderr if status.exitstatus > 1
