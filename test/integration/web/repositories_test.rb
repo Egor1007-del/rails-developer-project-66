@@ -80,12 +80,14 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     sign_in(@user)
 
     assert_difference -> { @user.repositories.count }, 1 do
-      post repositories_path,
-          params: {
-            repository: {
-              github_id: @github_repository.id
+      perform_enqueued_jobs do
+        post repositories_path,
+            params: {
+              repository: {
+                github_id: @github_repository.id
+              }
             }
-          }
+      end
     end
 
     assert { response.redirect? }
@@ -156,13 +158,14 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     repositories_count = @user.repositories.count
 
 
-    post repositories_path,
-        params: {
-          repository: {
-            github_id: github_repository.id
+    perform_enqueued_jobs do
+      post repositories_path,
+          params: {
+            repository: {
+              github_id: github_repository.id
+            }
           }
-        }
-
+    end
 
     assert { response.status == 302 }
     assert { @user.repositories.count == repositories_count }

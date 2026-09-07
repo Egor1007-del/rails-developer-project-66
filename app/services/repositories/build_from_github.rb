@@ -4,18 +4,29 @@ module Repositories
   class BuildFromGithub
     include Import[:github_client]
 
-    def call(user:, github_id:)
-      client = github_client.new(user.token)
-      github_repository = client.repository(github_id)
+    def call(repository)
+      client = github_client.new(repository.user.token)
+      github_repository = client.repository(repository.github_id)
 
-      user.repositories.build(
+      language = github_repository[:language]&.downcase
+
+      return unless supported_language?(language)
+
+      repository.update!(
         name: github_repository[:name],
-        github_id: github_repository[:id],
         full_name: github_repository[:full_name],
         language: github_repository[:language]&.downcase,
         clone_url: github_repository[:clone_url],
         ssh_url: github_repository[:ssh_url]
       )
+
+      repository
+    end
+
+    private
+
+    def supported_language?(language)
+      Repository.language.values.map(&:to_s).include?(language)
     end
   end
 end

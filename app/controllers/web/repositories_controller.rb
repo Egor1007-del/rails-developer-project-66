@@ -27,14 +27,10 @@ module Web
     end
 
     def create
-      @repository = build_from_github.call(user: current_user, github_id: repository_params[:github_id])
+      @repository = current_user.repositories.find_or_initialize_by(github_id: repository_params[:github_id])
 
       if @repository.save
-
-        install_webhook.call(
-          user: current_user,
-          repository: @repository
-        )
+        RepositorySetupJob.perform_later(@repository.id)
 
         redirect_to repositories_path, notice: t(".success")
 
