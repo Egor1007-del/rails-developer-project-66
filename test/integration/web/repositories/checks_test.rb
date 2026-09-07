@@ -64,7 +64,13 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
     assert { check.passed == false }
     assert { check.commit_id == Stubs::RepositoryLoaderStub::COMMIT_ID }
     assert { check.output == Stubs::EslintLinterStub::OUTPUT }
-    assert { check.offense_count == 1 }
+
+    check_result = LogFormatter.format(
+      check.output,
+      check.repository.language
+    )
+
+    assert { check_result[:offense_count] == 1 }
 
     get repository_check_path(repository, check)
 

@@ -4,7 +4,7 @@
 
 = t(".message")
 
-= t(".offenses", count: @check.offense_count)
+= t(".offenses", count: @check_result[:offense_count])
 
 = t(".show_report")
 = repository_check_url(@check.repository, @check)

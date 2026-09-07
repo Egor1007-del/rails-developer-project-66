@@ -29,7 +29,8 @@ class RepositoryCheckMailerTest < ActionMailer::TestCase
   test "failed check email" do
     check = @repository.checks.create!(
       aasm_state: "finished",
-      passed: false
+      passed: false,
+      output: Stubs::RubocopLinterStub::OUTPUT
     )
 
     email = RepositoryCheckMailer.with(
