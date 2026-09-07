@@ -11,7 +11,7 @@ module Api
 
       check = repository.checks.create!
 
-      RepositoryCheckJob.perform_later(check)
+      RepositoryCheckJob.perform_later(check.id)
 
       head :ok
     end
