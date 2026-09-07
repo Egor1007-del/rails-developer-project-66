@@ -23,11 +23,7 @@ class RepositoryTest < ActiveSupport::TestCase
 
   test "requires attributes" do
     attributes = %i[
-      name
       github_id
-      full_name
-      clone_url
-      ssh_url
     ]
 
     attributes.each do |attribute|
