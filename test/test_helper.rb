@@ -20,3 +20,11 @@ module ActiveSupport
     fixtures :all
   end
 end
+class ActionDispatch::IntegrationTest
+  def sign_in(user)
+    post "/test/session",
+         params: { email: user.email }
+
+    assert { response.successful? }
+  end
+end
