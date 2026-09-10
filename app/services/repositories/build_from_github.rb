@@ -9,11 +9,11 @@ module Repositories
       github_repository = client.repository(repository.github_id)
 
       repository.update!(
-        name: github_repository[:name],
-        full_name: github_repository[:full_name],
-        language: github_repository[:language]&.downcase,
-        clone_url: github_repository[:clone_url],
-        ssh_url: github_repository[:ssh_url]
+        name: github_repository.name,
+        full_name: github_repository.full_name,
+        language: github_repository.language&.downcase,
+        clone_url: github_repository.clone_url,
+        ssh_url: github_repository.ssh_url
       )
 
       repository
