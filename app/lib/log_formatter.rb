@@ -3,30 +3,17 @@ class LogFormatter
     def format(output, language)
       parsed_output = parse(output)
 
-      files_with_offenses =
-        case language.to_s
-        when "ruby"
-          rubocop_files(parsed_output)
-        when "javascript"
-          eslint_files(parsed_output)
-        else
-          []
-        end
-
-      offense_count =
-        case language.to_s
-        when "ruby"
-          rubocop_offense_count(parsed_output)
-        when "javascript"
-          eslint_offense_count(parsed_output)
-        else
-          0
-        end
-
-      {
-        files_with_offenses: files_with_offenses,
-        offense_count: offense_count
-      }
+      case language.to_s
+      when "ruby"
+        format_ruby(parsed_output)
+      when "javascript"
+        format_javascript(parsed_output)
+      else
+        {
+          files_with_offenses: [],
+          offense_count: 0
+        }
+      end
     end
 
     private
@@ -37,6 +24,20 @@ class LogFormatter
       JSON.parse(output)
     rescue JSON::ParserError
       {}
+    end
+
+    def format_ruby(parsed_output)
+      {
+        files_with_offenses: rubocop_files(parsed_output),
+        offense_count: rubocop_offense_count(parsed_output)
+      }
+    end
+
+    def format_javascript(parsed_output)
+      {
+        files_with_offenses: eslint_files(parsed_output),
+        offense_count: eslint_offense_count(parsed_output)
+      }
     end
 
     def rubocop_files(parsed_output)
