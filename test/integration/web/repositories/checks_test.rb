@@ -61,7 +61,7 @@ class Web::Repositories::ChecksTest < ActionDispatch::IntegrationTest
 
     assert check
     assert { check.finished? }
-    assert { check.passed == false }
+    assert_not check.passed
     assert { check.commit_id == Stubs::RepositoryLoaderStub::COMMIT_ID }
     assert { check.output == Stubs::EslintLinterStub::OUTPUT }
 
