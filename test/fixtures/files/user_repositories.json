@@ -1,0 +1,26 @@
+[
+  {
+    "id": 10001,
+    "name": "github-rails-project",
+    "full_name": "user-one/github-rails-project",
+    "language": "Ruby",
+    "clone_url": "https://github.com/user-one/github-rails-project.git",
+    "ssh_url": "git@github.com:user-one/github-rails-project.git"
+  },
+  {
+    "id": 20001,
+    "name": "javascript-project",
+    "full_name": "user-one/javascript-project",
+    "language": "JavaScript",
+    "clone_url": "https://github.com/user-one/javascript-project.git",
+    "ssh_url": "git@github.com:user-one/javascript-project.git"
+  },
+  {
+    "id": 30001,
+    "name": "python-project",
+    "full_name": "user-one/python-project",
+    "language": "Python",
+    "clone_url": "https://github.com/user-one/python-project.git",
+    "ssh_url": "git@github.com:user-one/python-project.git"
+  }
+]
