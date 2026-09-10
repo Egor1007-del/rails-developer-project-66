@@ -5,7 +5,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     @other_user = users(:two)
 
-    @github_repository = Stubs::GithubClientStub::RUBY_REPOSITORY
+    @github_repository = Stubs::GithubClientStub.new.repository(10_001)
     Stubs::GithubClientStub.reset_webhooks!
   end
 
@@ -155,7 +155,7 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
 
     existing_repository = repositories(:one)
 
-    github_repository = Stubs::GithubClientStub::RUBY_REPOSITORY
+    github_repository = Stubs::GithubClientStub.new.repository(10_001)
 
     existing_repository.update!(
       github_id: github_repository.id
