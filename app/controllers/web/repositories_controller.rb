@@ -41,16 +41,8 @@ module Web
 
     private
 
-    def build_from_github
-      @build_from_github ||= ::Repositories::BuildFromGithub.new
-    end
-
     def available_from_github
       @available_from_github ||= ::Repositories::AvailableFromGithub.new
-    end
-
-    def install_webhook
-      @install_webhook ||= ::InstallWebhook.new
     end
 
     def set_repository
