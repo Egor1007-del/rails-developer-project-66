@@ -150,38 +150,6 @@ class Web::RepositoriesTest < ActionDispatch::IntegrationTest
     assert { response.status == 404 }
   end
 
-  test "user cannot create repository with unsupported language" do
-    sign_in(@user)
-
-    github_repository = Stubs::GithubClientStub::PYTHON_REPOSITORY
-
-    repositories_count = @user.repositories.count
-
-
-    perform_enqueued_jobs do
-      post repositories_path,
-          params: {
-            repository: {
-              github_id: github_repository.id
-            }
-          }
-    end
-
-    assert { response.status == 302 }
-    assert { @user.repositories.count == repositories_count }
-
-    assert do
-      @user.repositories.find_by(
-        github_id: github_repository.id
-      ).nil?
-    end
-
-    follow_redirect!
-
-    assert_select "a[href='#{new_repository_path}']",
-                  text: I18n.t("web.repositories.index.add")
-  end
-
   test "user cannot add same github repository twice" do
     sign_in(@user)
 

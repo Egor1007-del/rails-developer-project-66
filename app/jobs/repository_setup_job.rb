@@ -4,12 +4,7 @@ class RepositorySetupJob < ApplicationJob
   def perform(repository_id)
     repository = Repository.find(repository_id)
 
-    result = ::Repositories::BuildFromGithub.new.call(repository)
-
-    unless result
-      repository.destroy!
-      return
-    end
+    ::Repositories::BuildFromGithub.new.call(repository)
 
     ::InstallWebhook.new.call(
       user: repository.user,

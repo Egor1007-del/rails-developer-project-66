@@ -8,10 +8,6 @@ module Repositories
       client = github_client.new(repository.user.token)
       github_repository = client.repository(repository.github_id)
 
-      language = github_repository[:language]&.downcase
-
-      return unless supported_language?(language)
-
       repository.update!(
         name: github_repository[:name],
         full_name: github_repository[:full_name],
@@ -21,12 +17,6 @@ module Repositories
       )
 
       repository
-    end
-
-    private
-
-    def supported_language?(language)
-      Repository.language.values.map(&:to_s).include?(language)
     end
   end
 end
