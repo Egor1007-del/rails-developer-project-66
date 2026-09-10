@@ -47,8 +47,7 @@ module Stubs
       ssh_url: "git@github.com:user-one/python-project.git"
     )
 
-    def initialize(_token)
-    end
+    def initialize(*); end
 
     def repositories
       [ RUBY_REPOSITORY, JAVASCRIPT_REPOSITORY, PYTHON_REPOSITORY ]
